@@ -55,44 +55,76 @@ export const AppShell: React.FC = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [showNewBookingModal, setShowNewBookingModal] = useState(false);
 
-  // Grouped Navigation Structure matching user requirements & 10_Administracion_Web.png
-  const navSections = [
+  // Primary Navigation Structure matching 10_Administracion_Web.png exactly
+  const navItems = [
     {
-      group: 'Operaciones',
-      items: [
-        { id: 'dashboard' as AdminModule, label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'calendario' as AdminModule, label: 'Reservas', icon: Calendar },
-        { id: 'canchas' as AdminModule, label: 'Canchas', icon: Trophy },
-        { id: 'instalaciones' as AdminModule, label: 'Instalaciones', icon: Building2 },
-        { id: 'mantenimiento' as AdminModule, label: 'Mantenimiento', icon: Wrench },
-        { id: 'checkin' as AdminModule, label: 'Check-in', icon: UserCheck },
-      ],
+      id: 'dashboard' as AdminModule,
+      label: 'Dashboard',
+      icon: LayoutDashboard,
+      isActive: activeModule === 'dashboard',
     },
     {
-      group: 'Comunidad deportiva',
-      items: [
-        { id: 'clases' as AdminModule, label: 'Clases y Entrenadores', icon: GraduationCap },
-        { id: 'jugadores' as AdminModule, label: 'Miembros y Usuarios', icon: Users },
-        { id: 'instructores' as AdminModule, label: 'Instructores Pro', icon: Shield },
-        { id: 'partidos' as AdminModule, label: 'Partidos Abiertos', icon: Users },
-        { id: 'planificacion' as AdminModule, label: 'Planificación Grupal', icon: Vote },
-        { id: 'resultados' as AdminModule, label: 'Resultados y Disputas', icon: Scale },
-        { id: 'rankings' as AdminModule, label: 'Rankings Oficiales', icon: Trophy },
-      ],
+      id: 'calendario' as AdminModule,
+      label: 'Reservas',
+      icon: Calendar,
+      isActive: activeModule === 'calendario',
     },
     {
-      group: 'Administración financiera',
-      items: [
-        { id: 'transacciones' as AdminModule, label: 'Pagos y Facturación', icon: CreditCard },
-        { id: 'ingresos_instalaciones' as AdminModule, label: 'Ingresos por Sede', icon: DollarSign },
-        { id: 'reportes_financieros' as AdminModule, label: 'Reportes', icon: BarChart3 },
-      ],
+      id: 'canchas' as AdminModule,
+      label: 'Canchas',
+      icon: Trophy,
+      isActive:
+        activeModule === 'canchas' ||
+        activeModule === 'instalaciones' ||
+        activeModule === 'mantenimiento' ||
+        activeModule === 'checkin',
     },
     {
-      group: 'Configuración',
-      items: [
-        { id: 'config_general' as AdminModule, label: 'Configuración', icon: Settings },
-      ],
+      id: 'clases' as AdminModule,
+      label: 'Clases y Entrenadores',
+      icon: GraduationCap,
+      isActive: activeModule === 'clases' || activeModule === 'instructores',
+    },
+    {
+      id: 'jugadores' as AdminModule,
+      label: 'Miembros y Usuarios',
+      icon: Users,
+      isActive:
+        activeModule === 'jugadores' ||
+        activeModule === 'comunidad' ||
+        activeModule === 'partidos' ||
+        activeModule === 'planificacion' ||
+        activeModule === 'resultados' ||
+        activeModule === 'rankings',
+    },
+    {
+      id: 'transacciones' as AdminModule,
+      label: 'Pagos y Facturación',
+      icon: CreditCard,
+      isActive:
+        activeModule === 'transacciones' ||
+        activeModule === 'ingresos_instalaciones' ||
+        activeModule === 'tarifas' ||
+        activeModule === 'comisiones' ||
+        activeModule === 'devoluciones' ||
+        activeModule === 'conciliacion',
+    },
+    {
+      id: 'reportes_financieros' as AdminModule,
+      label: 'Reportes',
+      icon: BarChart3,
+      isActive: activeModule === 'reportes_financieros',
+    },
+    {
+      id: 'config_general' as AdminModule,
+      label: 'Configuración',
+      icon: Settings,
+      isActive:
+        activeModule === 'config_general' ||
+        activeModule === 'usuarios_admin' ||
+        activeModule === 'roles_permisos' ||
+        activeModule === 'provincias' ||
+        activeModule === 'notificaciones_admin',
     },
   ];
 
@@ -135,92 +167,127 @@ export const AppShell: React.FC = () => {
           mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
-        <div className="flex flex-col h-full overflow-hidden">
-          {/* Sidebar Header Brand Lockup */}
-          <div className="p-4 pb-3 flex items-center justify-between border-b border-white/10 shrink-0">
-            <div className="flex items-center gap-2.5">
-              <BrandLogo size="sm" className="h-9 w-auto drop-shadow-md" />
-              {!sidebarCollapsed && (
-                <div className="leading-tight">
-                  <span className="block font-extrabold text-xs uppercase tracking-wider text-white">
-                    TENIS CLUB PANAMÁ
-                  </span>
-                  <span className="block text-[9.5px] font-bold text-[#ACD638] tracking-tight uppercase">
-                    ADMINISTRACIÓN DE INSTALACIONES
-                  </span>
-                </div>
-              )}
+        <div className="flex flex-col h-full justify-between overflow-hidden">
+          {/* Top Brand & Navigation */}
+          <div className="flex flex-col overflow-hidden">
+            {/* Sidebar Header Brand Lockup */}
+            <div className="p-4 pb-3 flex items-center justify-between border-b border-white/10 shrink-0">
+              <div className="flex items-center gap-2.5">
+                <BrandLogo size="sm" className="h-9 w-auto drop-shadow-md" />
+                {!sidebarCollapsed && (
+                  <div className="leading-tight">
+                    <span className="block font-extrabold text-xs uppercase tracking-wider text-white">
+                      TENIS CLUB PANAMÁ
+                    </span>
+                    <span className="block text-[9.5px] font-bold text-[#ACD638] tracking-tight uppercase">
+                      ADMINISTRACIÓN DE INSTALACIONES
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setMobileSidebarOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-white md:hidden"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setMobileSidebarOpen(false)}
-              className="p-1 rounded-lg text-slate-400 hover:text-white md:hidden"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+            {/* Navigation Items List (Clean 8-item structure matching mockup) */}
+            <div className="overflow-y-auto px-3 py-4 space-y-1.5 no-scrollbar">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = item.isActive;
 
-          {/* Navigation Items List */}
-          <div className="flex-1 overflow-y-auto px-3 py-4 space-y-5 no-scrollbar">
-            {navSections.map((sec, secIdx) => (
-              <div key={secIdx} className="space-y-1">
-                {!sidebarCollapsed && (
-                  <p className="px-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider mb-1.5">
-                    {sec.group}
-                  </p>
-                )}
-
-                {sec.items.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = activeModule === item.id;
-
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => {
-                        setActiveModule(item.id);
-                        setMobileSidebarOpen(false);
-                      }}
-                      title={item.label}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-                        isActive
-                          ? 'bg-[#ACD638] text-[#121C30] shadow-sm font-extrabold'
-                          : 'text-slate-300 hover:text-white hover:bg-white/10'
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => {
+                      setActiveModule(item.id);
+                      setMobileSidebarOpen(false);
+                    }}
+                    title={item.label}
+                    className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition cursor-pointer ${
+                      isActive
+                        ? 'bg-[#ACD638] text-[#121C30] shadow-sm font-extrabold'
+                        : 'text-slate-300 hover:text-white hover:bg-white/10 font-bold'
+                    }`}
+                  >
+                    <Icon
+                      className={`w-4 h-4 shrink-0 ${
+                        isActive ? 'text-[#121C30]' : 'text-slate-300'
                       }`}
-                    >
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#121C30]' : 'text-slate-300'}`} />
-                      {!sidebarCollapsed && (
-                        <span className="truncate">{item.label}</span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
+                    />
+                    {!sidebarCollapsed && (
+                      <span className="truncate">{item.label}</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Atmospheric Court Photography Card at Sidebar Bottom (Exact match to 10_Administracion_Web.png) */}
+          {/* Interactive Active Facility Card at Sidebar Bottom */}
           {!sidebarCollapsed ? (
             <div className="p-3 shrink-0 border-t border-white/10">
-              <div className="relative rounded-2xl overflow-hidden h-28 border border-white/15 shadow-inner">
-                <img
-                  src="/assets/photos/fondos/fondo_02.webp"
-                  alt="Tenis Club Panamá"
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121C30] via-black/35 to-transparent" />
-                <div className="absolute bottom-2 left-2 right-2 text-center">
-                  <span className="px-2 py-0.5 rounded bg-[#182642]/80 backdrop-blur-xs text-[10px] font-extrabold tracking-wider text-white uppercase border border-white/20 inline-block shadow-xs">
-                    TENIS CLUB PANAMÁ
-                  </span>
+              <div
+                onClick={() => {
+                  setActiveModule('instalaciones');
+                  setMobileSidebarOpen(false);
+                }}
+                className="group relative rounded-2xl overflow-hidden border border-white/15 bg-[#182642] shadow-lg cursor-pointer transition hover:border-[#ACD638]/60 hover:shadow-xl"
+              >
+                {/* Background Image: High-res illuminated court */}
+                <div className="h-28 w-full relative overflow-hidden">
+                  <img
+                    src="/assets/photos/privadas/privada_01.webp"
+                    alt="Tenis Club Panamá"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#10192A] via-[#121C30]/75 to-transparent" />
+
+                  {/* Live Status Pill at Top Right */}
+                  <div className="absolute top-2 right-2">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-xs text-[9.5px] font-bold text-[#ACD638] border border-white/10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ACD638] animate-pulse" />
+                      Operacional
+                    </span>
+                  </div>
+
+                  {/* Venue Info at Bottom */}
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-end justify-between">
+                    <div className="min-w-0 pr-1">
+                      <span className="block text-[9px] font-bold text-[#ACD638] uppercase tracking-wider leading-none mb-1">
+                        SEDE ACTIVA
+                      </span>
+                      <h4 className="text-xs font-extrabold text-white truncate leading-tight drop-shadow-xs">
+                        {activeSede.nombre}
+                      </h4>
+                      <p className="text-[10px] text-slate-300 truncate leading-tight mt-0.5">
+                        {activeSede.distrito}, {activeSede.provincia}
+                      </p>
+                    </div>
+                    <div className="w-6 h-6 rounded-lg bg-white/10 backdrop-blur-xs border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-[#ACD638] group-hover:text-[#121C30] transition">
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ) : (
             <div className="p-3 shrink-0 flex justify-center border-t border-white/10">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#ACD638]" />
+              <button
+                type="button"
+                onClick={() => setActiveModule('instalaciones')}
+                title={`Sede Activa: ${activeSede.nombre}`}
+                className="w-9 h-9 rounded-xl bg-white/10 hover:bg-[#ACD638] hover:text-[#121C30] text-slate-300 flex items-center justify-center transition border border-white/10 relative"
+              >
+                <Building2 className="w-4 h-4" />
+                <span className="w-2 h-2 rounded-full bg-[#ACD638] absolute -top-0.5 -right-0.5 ring-2 ring-[#121C30]" />
+              </button>
             </div>
           )}
         </div>
@@ -255,7 +322,9 @@ export const AppShell: React.FC = () => {
 
           {activeModule === 'instalaciones' && <AdminFacilitiesView />}
 
-          {activeModule === 'canchas' && <AdminCourtsView />}
+          {activeModule === 'canchas' && (
+            <AdminCourtsView onNavigate={(mod) => setActiveModule(mod)} />
+          )}
 
           {activeModule === 'mantenimiento' && <AdminMaintenanceView />}
 

@@ -14,9 +14,13 @@ import {
   X,
 } from 'lucide-react';
 import { useApp } from '../../../context/AppContext';
-import type { Cancha, CanchaInput, SurfaceType } from '../../../types/tennis';
+import type { AdminModule, Cancha, CanchaInput, SurfaceType } from '../../../types/tennis';
 
-export const AdminCourtsView: React.FC = () => {
+interface AdminCourtsViewProps {
+  onNavigate?: (mod: AdminModule) => void;
+}
+
+export const AdminCourtsView: React.FC<AdminCourtsViewProps> = ({ onNavigate }) => {
   const {
     state,
     activeSede,
@@ -105,6 +109,39 @@ export const AdminCourtsView: React.FC = () => {
           <span>Agregar Cancha</span>
         </button>
       </div>
+
+      {/* Sub-Navigation Tabs */}
+      {onNavigate && (
+        <div className="flex items-center gap-1.5 p-1 bg-slate-200/70 rounded-2xl w-fit flex-wrap">
+          <button
+            type="button"
+            className="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#273758] text-white shadow-xs"
+          >
+            🎾 Canchas ({courts.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigate('instalaciones')}
+            className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-[#1E2B45] hover:bg-white/80 transition cursor-pointer"
+          >
+            🏢 Instalaciones Deportivas
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigate('mantenimiento')}
+            className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-[#1E2B45] hover:bg-white/80 transition cursor-pointer"
+          >
+            🛠️ Mantenimiento & Lluvia
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigate('checkin')}
+            className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-[#1E2B45] hover:bg-white/80 transition cursor-pointer"
+          >
+            🎟️ Control de Check-in
+          </button>
+        </div>
+      )}
 
       {/* Sede selector filter */}
       <div className="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs flex items-center justify-between gap-4">
