@@ -101,7 +101,7 @@ export const AppShell: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#F4F6F9] flex flex-col md:flex-row antialiased text-[#1E2B45] overflow-x-hidden selection:bg-[#ACD638] selection:text-[#16223B]">
+    <div className="h-screen w-full bg-[#F4F6F9] flex flex-row antialiased text-[#1E2B45] overflow-hidden selection:bg-[#ACD638] selection:text-[#16223B]">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -129,7 +129,7 @@ export const AppShell: React.FC = () => {
 
       {/* Left Sidebar (Faithful to 10_Administracion_Web.png) */}
       <aside
-        className={`fixed md:sticky top-0 h-screen z-50 md:z-30 bg-[#121C30] text-white flex flex-col justify-between shrink-0 transition-all duration-300 border-r border-white/5 ${
+        className={`fixed md:relative top-0 h-full z-40 md:z-30 bg-[#121C30] text-white flex flex-col justify-between shrink-0 transition-all duration-300 border-r border-white/5 ${
           sidebarCollapsed ? 'w-20' : 'w-64'
         } ${
           mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
@@ -227,8 +227,8 @@ export const AppShell: React.FC = () => {
       </aside>
 
       {/* Main Administrative Canvas */}
-      <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Header Bar */}
+      <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
+        {/* Top Header Bar (Pinned) */}
         <HeaderBar
           onToggleSidebar={() => {
             if (window.innerWidth < 768) {
@@ -240,8 +240,8 @@ export const AppShell: React.FC = () => {
           onNavigateModule={(mod) => setActiveModule(mod as AdminModule)}
         />
 
-        {/* Content Body Viewport (Zero 480px width limits, full enterprise wide presence) */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto">
+        {/* Content Body Viewport (Smooth vertical mouse wheel scrolling) */}
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-8 max-w-[1600px] w-full mx-auto focus:outline-none">
           {activeModule === 'dashboard' && (
             <AdminDashboardView
               onNavigate={(mod) => setActiveModule(mod)}

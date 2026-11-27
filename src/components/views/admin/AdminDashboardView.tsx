@@ -280,8 +280,8 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
 
       {/* Middle Grid: Calendario de reservas (Left) + Ocupación (Center) + Estado canchas (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column (5 cols): Mini Calendario de reservas (matching 10_Administracion_Web.png) */}
-        <div className="lg:col-span-6 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+        {/* Left Column: Mini Calendario de reservas (matching 10_Administracion_Web.png) */}
+        <div className="lg:col-span-12 xl:col-span-6 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -496,8 +496,8 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Center Column (3 cols): Ocupación de canchas (Donut + Tendencia) */}
-        <div className="lg:col-span-3 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+        {/* Center Column: Ocupación de canchas (Donut + Tendencia) */}
+        <div className="lg:col-span-6 xl:col-span-3 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-2 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -621,8 +621,8 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Right Column (3 cols): Estado de canchas (Cards with thumbnails) */}
-        <div className="lg:col-span-3 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+        {/* Right Column: Estado de canchas (Cards with thumbnails) */}
+        <div className="lg:col-span-6 xl:col-span-3 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -716,10 +716,10 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
         </div>
       </div>
 
-      {/* Bottom Row: Clases y entrenadores + Pagos recientes + Notificaciones */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Clases y entrenadores (4 cols) */}
-        <div className="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+      {/* Bottom Row: Clases y entrenadores + Pagos recientes + Notificaciones (Responsive & Pristine Alignment) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {/* Clases y entrenadores */}
+        <div className="col-span-1 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -767,35 +767,36 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
             {classTab === 'proximas' ? (
               <div className="space-y-2.5">
                 {/* Class 1 */}
-                <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 text-center py-1 bg-slate-100 rounded-lg">
-                      <span className="block text-[9px] font-bold text-slate-400 uppercase">VIE</span>
-                      <span className="block text-xs font-extrabold text-[#1E2B45]">24</span>
-                      <span className="block text-[8.5px] font-bold text-slate-400 uppercase">ENE</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-[#1E2B45] block">
-                        Clase Intermedio
+                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-slate-200 hover:bg-slate-50/70 transition gap-3">
+                  <div className="w-11 shrink-0 text-center py-1.5 px-1 bg-slate-100 rounded-lg border border-slate-200/50">
+                    <span className="block text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">VIE</span>
+                    <span className="block text-sm font-extrabold text-[#1E2B45] my-0.5 leading-none">24</span>
+                    <span className="block text-[8.5px] font-bold text-slate-400 uppercase tracking-tight leading-none">ENE</span>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-xs font-bold text-[#1E2B45] truncate">
+                      Clase Intermedio
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-500 mt-1">
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>6:00 p. m. - 7:00 p. m.</span>
                       </span>
-                      <div className="flex items-center gap-2 text-[10.5px] text-slate-400 mt-0.5">
-                        <span className="flex items-center gap-0.5">
-                          <Clock className="w-3 h-3" />
-                          6:00 p. m. - 7:00 p. m.
-                        </span>
-                        <span>·</span>
-                        <span className="flex items-center gap-0.5">
-                          <Users className="w-3 h-3" />
-                          4/4
-                        </span>
-                        <span>·</span>
-                        <span>Cancha 1</span>
-                      </div>
+                      <span className="text-slate-300">·</span>
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Users className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>4/4</span>
+                      </span>
+                      <span className="text-slate-300">·</span>
+                      <span className="font-semibold text-slate-700 whitespace-nowrap">
+                        Cancha 1
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-200">
+                  <div className="flex items-center gap-2 shrink-0 pl-1">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white shadow-2xs shrink-0">
                       <img
                         src="/assets/photos/instructores/instructor_01.webp"
                         alt="Andrés Salazar"
@@ -803,44 +804,47 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                       />
                     </div>
                     <div className="hidden sm:block text-right">
-                      <span className="block text-[11px] font-bold text-[#1E2B45]">
+                      <span className="block text-[11px] font-bold text-[#1E2B45] whitespace-nowrap leading-tight">
                         Andrés Salazar
                       </span>
-                      <span className="block text-[9px] text-slate-400">Entrenador</span>
+                      <span className="block text-[9.5px] text-slate-400 font-medium leading-tight">
+                        Entrenador
+                      </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Class 2 */}
-                <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 text-center py-1 bg-slate-100 rounded-lg">
-                      <span className="block text-[9px] font-bold text-slate-400 uppercase">VIE</span>
-                      <span className="block text-xs font-extrabold text-[#1E2B45]">24</span>
-                      <span className="block text-[8.5px] font-bold text-slate-400 uppercase">ENE</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-[#1E2B45] block">
-                        Clase Principiante
+                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-slate-200 hover:bg-slate-50/70 transition gap-3">
+                  <div className="w-11 shrink-0 text-center py-1.5 px-1 bg-slate-100 rounded-lg border border-slate-200/50">
+                    <span className="block text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">VIE</span>
+                    <span className="block text-sm font-extrabold text-[#1E2B45] my-0.5 leading-none">24</span>
+                    <span className="block text-[8.5px] font-bold text-slate-400 uppercase tracking-tight leading-none">ENE</span>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-xs font-bold text-[#1E2B45] truncate">
+                      Clase Principiante
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-500 mt-1">
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>7:00 p. m. - 8:00 p. m.</span>
                       </span>
-                      <div className="flex items-center gap-2 text-[10.5px] text-slate-400 mt-0.5">
-                        <span className="flex items-center gap-0.5">
-                          <Clock className="w-3 h-3" />
-                          7:00 p. m. - 8:00 p. m.
-                        </span>
-                        <span>·</span>
-                        <span className="flex items-center gap-0.5">
-                          <Users className="w-3 h-3" />
-                          4/4
-                        </span>
-                        <span>·</span>
-                        <span>Cancha 3</span>
-                      </div>
+                      <span className="text-slate-300">·</span>
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Users className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>4/4</span>
+                      </span>
+                      <span className="text-slate-300">·</span>
+                      <span className="font-semibold text-slate-700 whitespace-nowrap">
+                        Cancha 3
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-200">
+                  <div className="flex items-center gap-2 shrink-0 pl-1">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white shadow-2xs shrink-0">
                       <img
                         src="/assets/photos/instructores/instructor_02.webp"
                         alt="Valeria Paredes"
@@ -848,44 +852,47 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                       />
                     </div>
                     <div className="hidden sm:block text-right">
-                      <span className="block text-[11px] font-bold text-[#1E2B45]">
+                      <span className="block text-[11px] font-bold text-[#1E2B45] whitespace-nowrap leading-tight">
                         Valeria Paredes
                       </span>
-                      <span className="block text-[9px] text-slate-400">Entrenadora</span>
+                      <span className="block text-[9.5px] text-slate-400 font-medium leading-tight">
+                        Entrenadora
+                      </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Class 3 */}
-                <div className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 transition">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 text-center py-1 bg-slate-100 rounded-lg">
-                      <span className="block text-[9px] font-bold text-slate-400 uppercase">SÁB</span>
-                      <span className="block text-xs font-extrabold text-[#1E2B45]">25</span>
-                      <span className="block text-[8.5px] font-bold text-slate-400 uppercase">ENE</span>
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-[#1E2B45] block">
-                        Clase Avanzado
+                <div className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-slate-200 hover:bg-slate-50/70 transition gap-3">
+                  <div className="w-11 shrink-0 text-center py-1.5 px-1 bg-slate-100 rounded-lg border border-slate-200/50">
+                    <span className="block text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">SÁB</span>
+                    <span className="block text-sm font-extrabold text-[#1E2B45] my-0.5 leading-none">25</span>
+                    <span className="block text-[8.5px] font-bold text-slate-400 uppercase tracking-tight leading-none">ENE</span>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-xs font-bold text-[#1E2B45] truncate">
+                      Clase Avanzado
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-500 mt-1">
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>9:00 a. m. - 10:30 a. m.</span>
                       </span>
-                      <div className="flex items-center gap-2 text-[10.5px] text-slate-400 mt-0.5">
-                        <span className="flex items-center gap-0.5">
-                          <Clock className="w-3 h-3" />
-                          9:00 a. m. - 10:30 a. m.
-                        </span>
-                        <span>·</span>
-                        <span className="flex items-center gap-0.5">
-                          <Users className="w-3 h-3" />
-                          2/4
-                        </span>
-                        <span>·</span>
-                        <span>Cancha 2</span>
-                      </div>
+                      <span className="text-slate-300">·</span>
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+                        <Users className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>2/4</span>
+                      </span>
+                      <span className="text-slate-300">·</span>
+                      <span className="font-semibold text-slate-700 whitespace-nowrap">
+                        Cancha 2
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full overflow-hidden bg-slate-200">
+                  <div className="flex items-center gap-2 shrink-0 pl-1">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-slate-200 ring-2 ring-white shadow-2xs shrink-0">
                       <img
                         src="/assets/photos/instructores/instructor_03.webp"
                         alt="Ricardo Melo"
@@ -893,10 +900,12 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                       />
                     </div>
                     <div className="hidden sm:block text-right">
-                      <span className="block text-[11px] font-bold text-[#1E2B45]">
+                      <span className="block text-[11px] font-bold text-[#1E2B45] whitespace-nowrap leading-tight">
                         Ricardo Melo
                       </span>
-                      <span className="block text-[9px] text-slate-400">Entrenador</span>
+                      <span className="block text-[9.5px] text-slate-400 font-medium leading-tight">
+                        Entrenador
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -906,22 +915,22 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
                 {state.instructores.slice(0, 3).map((inst) => (
                   <div
                     key={inst.id}
-                    className="flex items-center justify-between p-2 rounded-xl border border-slate-100 hover:bg-slate-50"
+                    className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 transition"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full overflow-hidden bg-slate-200 shrink-0">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-full overflow-hidden bg-slate-200 ring-1 ring-slate-200 shrink-0">
                         <img
                           src={resolveAvatarPhoto(inst.nombre, inst.avatarSeed, undefined, true)}
                           alt={inst.nombre}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div>
-                        <span className="text-xs font-bold text-[#1E2B45] block">{inst.nombre}</span>
-                        <span className="text-[10px] text-slate-400">{inst.titulo}</span>
+                      <div className="min-w-0">
+                        <span className="text-xs font-bold text-[#1E2B45] block truncate">{inst.nombre}</span>
+                        <span className="text-[10px] text-slate-400 block truncate">{inst.titulo}</span>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-[#273758] tabular-nums">
+                    <span className="text-xs font-bold text-[#273758] tabular-nums whitespace-nowrap pl-2">
                       B/. {inst.precioBase}/h
                     </span>
                   </div>
@@ -931,8 +940,8 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Pagos recientes (4 cols) */}
-        <div className="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+        {/* Pagos recientes */}
+        <div className="col-span-1 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -951,63 +960,93 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
               </button>
             </div>
 
-            <div className="mt-3 overflow-x-auto">
-              <table className="w-full text-left text-xs">
+            <div className="mt-3 overflow-x-auto no-scrollbar">
+              <table className="w-full text-left text-xs border-collapse min-w-[340px]">
                 <thead>
-                  <tr className="border-b border-slate-100 text-[11px] font-bold text-slate-400">
-                    <th className="pb-2">Fecha</th>
-                    <th className="pb-2">Concepto</th>
-                    <th className="pb-2">Miembro / Cliente</th>
-                    <th className="pb-2 text-right">Monto</th>
+                  <tr className="border-b border-slate-100 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                    <th className="pb-2.5 pr-2 whitespace-nowrap">Fecha</th>
+                    <th className="pb-2.5 px-2 whitespace-nowrap">Concepto</th>
+                    <th className="pb-2.5 px-2 whitespace-nowrap">Miembro / Cliente</th>
+                    <th className="pb-2.5 pl-2 text-right whitespace-nowrap">Monto</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">
-                  <tr>
-                    <td className="py-2.5 text-[11px] text-slate-400">24 ene, 7:32 p. m.</td>
-                    <td className="py-2.5 text-slate-700">Reserva de cancha</td>
-                    <td className="py-2.5 font-bold text-[#1E2B45]">Carlos Méndez</td>
-                    <td className="py-2.5 text-right">
-                      <span className="px-2 py-0.5 rounded-full bg-[#ACD638] text-[#16223B] font-extrabold text-[11px] tabular-nums">
+                  <tr className="hover:bg-slate-50/70 transition">
+                    <td className="py-2.5 pr-2 text-[11px] text-slate-400 whitespace-nowrap font-mono">
+                      24 ene, 7:32 p. m.
+                    </td>
+                    <td className="py-2.5 px-2 text-slate-700 whitespace-nowrap font-medium">
+                      Reserva de cancha
+                    </td>
+                    <td className="py-2.5 px-2 font-bold text-[#1E2B45] whitespace-nowrap">
+                      Carlos Méndez
+                    </td>
+                    <td className="py-2.5 pl-2 text-right whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#ACD638] text-[#121C30] font-extrabold text-[11px] tabular-nums whitespace-nowrap shadow-2xs">
                         B/. 18.00
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="py-2.5 text-[11px] text-slate-400">24 ene, 6:45 p. m.</td>
-                    <td className="py-2.5 text-slate-700">Clase Intermedio</td>
-                    <td className="py-2.5 font-bold text-[#1E2B45]">Ana Gómez</td>
-                    <td className="py-2.5 text-right">
-                      <span className="px-2 py-0.5 rounded-full bg-[#ACD638] text-[#16223B] font-extrabold text-[11px] tabular-nums">
+                  <tr className="hover:bg-slate-50/70 transition">
+                    <td className="py-2.5 pr-2 text-[11px] text-slate-400 whitespace-nowrap font-mono">
+                      24 ene, 6:45 p. m.
+                    </td>
+                    <td className="py-2.5 px-2 text-slate-700 whitespace-nowrap font-medium">
+                      Clase Intermedio
+                    </td>
+                    <td className="py-2.5 px-2 font-bold text-[#1E2B45] whitespace-nowrap">
+                      Ana Gómez
+                    </td>
+                    <td className="py-2.5 pl-2 text-right whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#ACD638] text-[#121C30] font-extrabold text-[11px] tabular-nums whitespace-nowrap shadow-2xs">
                         B/. 25.00
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="py-2.5 text-[11px] text-slate-400">24 ene, 5:10 p. m.</td>
-                    <td className="py-2.5 text-slate-700">Membresía mensual</td>
-                    <td className="py-2.5 font-bold text-[#1E2B45]">Javier Torres</td>
-                    <td className="py-2.5 text-right">
-                      <span className="px-2 py-0.5 rounded-full bg-[#ACD638] text-[#16223B] font-extrabold text-[11px] tabular-nums">
+                  <tr className="hover:bg-slate-50/70 transition">
+                    <td className="py-2.5 pr-2 text-[11px] text-slate-400 whitespace-nowrap font-mono">
+                      24 ene, 5:10 p. m.
+                    </td>
+                    <td className="py-2.5 px-2 text-slate-700 whitespace-nowrap font-medium">
+                      Membresía mensual
+                    </td>
+                    <td className="py-2.5 px-2 font-bold text-[#1E2B45] whitespace-nowrap">
+                      Javier Torres
+                    </td>
+                    <td className="py-2.5 pl-2 text-right whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#ACD638] text-[#121C30] font-extrabold text-[11px] tabular-nums whitespace-nowrap shadow-2xs">
                         B/. 85.00
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="py-2.5 text-[11px] text-slate-400">24 ene, 4:28 p. m.</td>
-                    <td className="py-2.5 text-slate-700">Reserva de cancha</td>
-                    <td className="py-2.5 font-bold text-[#1E2B45]">María Rivas</td>
-                    <td className="py-2.5 text-right">
-                      <span className="px-2 py-0.5 rounded-full bg-[#ACD638] text-[#16223B] font-extrabold text-[11px] tabular-nums">
+                  <tr className="hover:bg-slate-50/70 transition">
+                    <td className="py-2.5 pr-2 text-[11px] text-slate-400 whitespace-nowrap font-mono">
+                      24 ene, 4:28 p. m.
+                    </td>
+                    <td className="py-2.5 px-2 text-slate-700 whitespace-nowrap font-medium">
+                      Reserva de cancha
+                    </td>
+                    <td className="py-2.5 px-2 font-bold text-[#1E2B45] whitespace-nowrap">
+                      María Rivas
+                    </td>
+                    <td className="py-2.5 pl-2 text-right whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#ACD638] text-[#121C30] font-extrabold text-[11px] tabular-nums whitespace-nowrap shadow-2xs">
                         B/. 18.00
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="py-2.5 text-[11px] text-slate-400">24 ene, 3:57 p. m.</td>
-                    <td className="py-2.5 text-slate-700">Clase Principiante</td>
-                    <td className="py-2.5 font-bold text-[#1E2B45]">Pablo Ruiz</td>
-                    <td className="py-2.5 text-right">
-                      <span className="px-2 py-0.5 rounded-full bg-[#ACD638] text-[#16223B] font-extrabold text-[11px] tabular-nums">
+                  <tr className="hover:bg-slate-50/70 transition">
+                    <td className="py-2.5 pr-2 text-[11px] text-slate-400 whitespace-nowrap font-mono">
+                      24 ene, 3:57 p. m.
+                    </td>
+                    <td className="py-2.5 px-2 text-slate-700 whitespace-nowrap font-medium">
+                      Clase Principiante
+                    </td>
+                    <td className="py-2.5 px-2 font-bold text-[#1E2B45] whitespace-nowrap">
+                      Pablo Ruiz
+                    </td>
+                    <td className="py-2.5 pl-2 text-right whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#ACD638] text-[#121C30] font-extrabold text-[11px] tabular-nums whitespace-nowrap shadow-2xs">
                         B/. 25.00
                       </span>
                     </td>
@@ -1018,8 +1057,8 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Notificaciones (4 cols) */}
-        <div className="lg:col-span-4 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+        {/* Notificaciones */}
+        <div className="col-span-1 lg:col-span-2 xl:col-span-1 bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
@@ -1040,15 +1079,15 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
 
             <div className="space-y-3 mt-3">
               {/* Notif 1 */}
-              <div className="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 transition">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-slate-100/70 transition border border-slate-100/60">
                 <span className="w-2 h-2 rounded-full bg-[#ACD638] mt-1.5 shrink-0" />
-                <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0">
-                  <Calendar className="w-3.5 h-3.5" />
+                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0 border border-slate-100">
+                  <Calendar className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E2B45]">Reserva próxima</span>
-                    <span className="text-[10px] text-slate-400">Hace 5 min</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-[#1E2B45] truncate">Reserva próxima</span>
+                    <span className="text-[10px] text-slate-400 whitespace-nowrap shrink-0">Hace 5 min</span>
                   </div>
                   <p className="text-[11px] text-slate-600 truncate mt-0.5">
                     Cancha 1 – Hoy, 6:00 p. m. (Clase Intermedio)
@@ -1057,15 +1096,15 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
               </div>
 
               {/* Notif 2 */}
-              <div className="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 transition">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-slate-100/70 transition border border-slate-100/60">
                 <span className="w-2 h-2 rounded-full bg-[#ACD638] mt-1.5 shrink-0" />
-                <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0">
-                  <Users className="w-3.5 h-3.5" />
+                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0 border border-slate-100">
+                  <Users className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E2B45]">Nueva membresía</span>
-                    <span className="text-[10px] text-slate-400">Hace 28 min</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-[#1E2B45] truncate">Nueva membresía</span>
+                    <span className="text-[10px] text-slate-400 whitespace-nowrap shrink-0">Hace 28 min</span>
                   </div>
                   <p className="text-[11px] text-slate-600 truncate mt-0.5">
                     Lucía Fernández se unió al club (Plan Mensual)
@@ -1074,15 +1113,15 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
               </div>
 
               {/* Notif 3 */}
-              <div className="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 transition">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-slate-100/70 transition border border-slate-100/60">
                 <span className="w-2 h-2 rounded-full bg-[#ACD638] mt-1.5 shrink-0" />
-                <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0">
-                  <CreditCard className="w-3.5 h-3.5" />
+                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#273758] shadow-2xs shrink-0 border border-slate-100">
+                  <CreditCard className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E2B45]">Pago recibido</span>
-                    <span className="text-[10px] text-slate-400">Hace 41 min</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-[#1E2B45] truncate">Pago recibido</span>
+                    <span className="text-[10px] text-slate-400 whitespace-nowrap shrink-0">Hace 41 min</span>
                   </div>
                   <p className="text-[11px] text-slate-600 truncate mt-0.5">
                     B/. 85.00 – Membresía mensual (Javier Torres)
@@ -1091,15 +1130,15 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({
               </div>
 
               {/* Notif 4 */}
-              <div className="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 transition">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/80 hover:bg-slate-100/70 transition border border-slate-100/60">
                 <span className="w-2 h-2 rounded-full bg-[#ACD638] mt-1.5 shrink-0" />
-                <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center text-amber-600 shadow-2xs shrink-0">
-                  <Wrench className="w-3.5 h-3.5" />
+                <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-amber-600 shadow-2xs shrink-0 border border-slate-100">
+                  <Wrench className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#1E2B45]">Mantenimiento programado</span>
-                    <span className="text-[10px] text-slate-400">Hace 1 h</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-[#1E2B45] truncate">Mantenimiento programado</span>
+                    <span className="text-[10px] text-slate-400 whitespace-nowrap shrink-0">Hace 1 h</span>
                   </div>
                   <p className="text-[11px] text-slate-600 truncate mt-0.5">
                     Cancha 4 – Mañana, 8:00 a. m. - 10:00 a. m.
