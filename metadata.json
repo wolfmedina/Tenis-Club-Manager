@@ -1,0 +1,8 @@
+{
+  "name": "Tenis Club Manager.",
+  "description": "Plataforma PWA de reservas de canchas, comunidad, clases, ranking y administración deportiva en Panamá.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
